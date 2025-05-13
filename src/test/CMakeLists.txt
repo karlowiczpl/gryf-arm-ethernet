@@ -5,10 +5,10 @@ project(ABSTRACT_TEST)
 include(${CMAKE_CURRENT_LIST_DIR}/../abstract/abstract_include.cmake)
 
 add_executable(ABSTRACT_TEST
-    unity/unity.c
-
     test_runner.c
     parser_test/parser_test.c
+
+    unity/unity.c
 )
 target_include_directories(ABSTRACT_TEST PRIVATE
     unity
