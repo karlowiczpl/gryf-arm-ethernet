@@ -2,15 +2,12 @@
 #include <task.h>
 
 void vApplicationIdleHook(void) {
-  // Kod do wykonania w stanie bezczynności
 }
 
 void vApplicationMallocFailedHook(void) {
-  // Kod w przypadku błędu alokacji pamięci
 }
 
 void vApplicationStackOverflowHook(TaskHandle_t task, char* taskName) {
-  // Kod w przypadku przepełnienia stosu
 }
 
 void vApplicationGetIdleTaskMemory(StaticTask_t** ppxIdleTaskTCBBuffer,

@@ -6,6 +6,8 @@ set(PICO_SDK_DIR ${LIB_DIR}/pico-sdk)
 set(ENABLE_PROGRAMS OFF CACHE BOOL "Build mbedtls programs")
 set(ENABLE_TESTING OFF CACHE BOOL "Build mbedtls testing")
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 set(WIZNET_CHIP W5500)
 add_definitions(
     -D_WIZCHIP_=${WIZNET_CHIP}
@@ -48,9 +50,12 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   abstract_files
 )
 
-add_subdirectory(${LIB_DIR}/mbedtls)
+add_library(GRYF_SMART_CONFIG INTERFACE)
+target_include_directories(GRYF_SMART_CONFIG INTERFACE 
+  ${CMAKE_CURRENT_LIST_DIR}/
+)
 
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+add_subdirectory(${LIB_DIR}/mbedtls)
 
 set(CPACK_INCLUDE_TOPLEVEL_DIRECTORY OFF)
 set(CPACK_GENERATOR "ZIP" "TGZ")

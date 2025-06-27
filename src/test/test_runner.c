@@ -2,9 +2,21 @@
 #include <unity.h>
 
 #include "parser_test/parser_test.h"
+#include "analyse.h"
+#include "parser.h"
 
 void setUp()    {}
 void tearDown()   {}
+
+uint8_t sample_function(PARSED_DATA_T* data)
+{
+  printf("test\n");
+}
+
+MACRO_MAPPER_T mapper[] = {
+  {"print", sample_function},
+  {"", sample_function},
+};
 
 int main(void)
 {
@@ -21,4 +33,11 @@ int main(void)
   RUN_TEST(test_parse_too_large_argument);
 
   return UNITY_END();
+
+  char command[] = "print=1,1,2,3,1,4";
+  PARSED_DATA_T* parsed = parse_at_command(command, 0);
+
+  include_mapper(mapper);
+  analyse_data(parsed);
+
 }

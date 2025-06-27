@@ -9,6 +9,7 @@ set(WIZNET_DIR ${LIB_DIR}/ioLibrary_Driver)
 set(PICO_SDK_DIR ${CMAKE_CURRENT_LIST_DIR}/pico-sdk)
 
 add_library(ETHERNET_FILES STATIC)
+
 target_sources(ETHERNET_FILES PUBLIC
   ${WIZNET_DIR}/Ethernet/socket.c
   ${WIZNET_DIR}/Ethernet/wizchip_conf.c
@@ -52,3 +53,43 @@ target_include_directories(TIMER_FILES PUBLIC
 target_link_libraries(TIMER_FILES PUBLIC
   pico_stdlib
 )
+
+# DHCP FILES
+
+add_library(DHCP_FILES STATIC)
+
+target_sources(DHCP_FILES PUBLIC
+        ${WIZNET_DIR}/Internet/DHCP/dhcp.c
+)
+
+target_include_directories(DHCP_FILES PUBLIC
+        ${WIZNET_DIR}/Ethernet
+        ${WIZNET_DIR}/Internet/DHCP
+)
+
+# DNS
+add_library(DNS_FILES STATIC)
+
+target_sources(DNS_FILES PUBLIC
+        ${WIZNET_DIR}/Internet/DNS/dns.c
+        )
+
+target_include_directories(DNS_FILES PUBLIC
+        ${WIZNET_DIR}/Ethernet
+        ${WIZNET_DIR}/Internet/DNS
+        )
+
+# HTTP Server
+add_library(HTTPSERVER_FILES STATIC)
+
+target_sources(HTTPSERVER_FILES PUBLIC
+        ${WIZNET_DIR}/Internet/httpServer/httpParser.c
+        ${WIZNET_DIR}/Internet/httpServer/httpServer.c
+        ${WIZNET_DIR}/Internet/httpServer/httpUtil.c
+        )
+
+target_include_directories(HTTPSERVER_FILES PUBLIC
+        ${WIZNET_DIR}/Ethernet
+        ${WIZNET_DIR}/Internet/httpServer
+        )
+

@@ -5,7 +5,7 @@
 #include <FreeRTOS.h>
 #include <task.h>
 
-#include <tcp.h>
+#include <gTcp.h>
 
 static StaticTask_t idleTask_TCB;
 static StackType_t idleTask_RAM[configMINIMAL_STACK_SIZE];
@@ -40,8 +40,10 @@ static void ethernet_task(void* pvParameters)
 
   while(1)
   {
-    char* out = read_tcp();
-    if(out != NULL)       printf("%s", out);
+    // char* out = read_tcp();
+    // if(out != NULL)       printf("%s", out);
+    //
+    http_server_run();
   }
 }
 

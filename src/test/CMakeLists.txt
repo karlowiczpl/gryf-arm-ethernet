@@ -7,12 +7,14 @@ include(${CMAKE_CURRENT_LIST_DIR}/../abstract/abstract_include.cmake)
 add_executable(ABSTRACT_TEST
     test_runner.c
     parser_test/parser_test.c
+    analyse_test/analyse_test.c
 
     unity/unity.c
 )
 target_include_directories(ABSTRACT_TEST PRIVATE
     unity
     parser_test
+    analyse_test
 )
 target_link_libraries(ABSTRACT_TEST PRIVATE
     abstract_files

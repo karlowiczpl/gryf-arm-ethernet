@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define PARSER_COUNT 1
+#define PARSER_COUNT 2
 
 typedef struct
 {
