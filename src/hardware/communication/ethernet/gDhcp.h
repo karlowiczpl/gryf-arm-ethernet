@@ -3,10 +3,21 @@
 
 #include <stdint.h>
 
-#define PLL_SYS_KHZ (133 * 1000)
+#include "wizchip_conf.h"
 
-extern void setup_ethernet();
+#include "ethernet_config.h"
 
-static void setup_dhcp();
+#define DHCP_MAX_RETRY_COUNT 5
+
+extern uint8_t ethernet_buf[ETHERNET_BUF_MAX_SIZE];
+extern wiz_NetInfo net_info;
+
+void setup_ip();
+
+static void dhcp_init();
+static void wizchip_ip_rental();
+static void wizchip_dhcp_assign();
+static void wizchip_dhcp_conflict();
+static void set_mac_addres();
 
 #endif // !GDHCP_H

@@ -1,0 +1,10 @@
+#ifndef ETHERNET_CONFIG_H
+#define ETHERNET_CONFIG_H
+
+#define PLL_SYS_KHZ (133 * 1000)
+#define ETHERNET_BUF_MAX_SIZE 512
+
+#define SOCKET_DHCP 7
+#define SOCKET_UDP 0
+
+#endif // !ETHERNET_CONFIG_H

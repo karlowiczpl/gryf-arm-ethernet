@@ -93,3 +93,15 @@ target_include_directories(HTTPSERVER_FILES PUBLIC
         ${WIZNET_DIR}/Internet/httpServer
         )
 
+# Loopback
+add_library(LOOPBACK_FILES STATIC)
+
+target_sources(LOOPBACK_FILES PUBLIC
+        ${WIZNET_DIR}/Application/loopback/loopback.c
+        )
+
+target_include_directories(LOOPBACK_FILES PUBLIC
+        ${WIZNET_DIR}/Ethernet
+        ${WIZNET_DIR}/Application/loopback
+        )
+

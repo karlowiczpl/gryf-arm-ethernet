@@ -4,6 +4,8 @@ set(ETHERNET_SOURCES
   ${CMAKE_CURRENT_LIST_DIR}/communication/ethernet/gDhcp.c
   ${CMAKE_CURRENT_LIST_DIR}/communication/ethernet/gHttp.c
   ${CMAKE_CURRENT_LIST_DIR}/communication/ethernet/gTcp.c
+  ${CMAKE_CURRENT_LIST_DIR}/communication/ethernet/gEth.c
+  ${CMAKE_CURRENT_LIST_DIR}/communication/ethernet/gUtp.c
 )
 
 target_sources(hardware_files PUBLIC
@@ -31,4 +33,5 @@ target_link_libraries(hardware_files PUBLIC
   DNS_FILES
   FREERTOS_CONFIG
   HTTPSERVER_FILES
+  LOOPBACK_FILES
 )
