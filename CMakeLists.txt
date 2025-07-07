@@ -18,7 +18,7 @@ add_definitions(
     -DSET_TRUSTED_CERT_IN_SAMPLES
 )
 
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.13)
 
 include(${PICO_SDK_DIR}/external/pico_sdk_import.cmake)
 include(${PORT_DIR}/pico-sdk/pico-sdk-config.cmake)
@@ -37,6 +37,8 @@ pico_sdk_init()
 add_executable(${PROJECT_NAME}
   ${SRC_DIR}/main.c
 )
+
+pico_generate_pio_header(${PROJECT_NAME} ${CMAKE_CURRENT_LIST_DIR}/blink.pio)
 
 pico_enable_stdio_usb(${PROJECT_NAME} 1)
 pico_enable_stdio_uart(${PROJECT_NAME} 1)

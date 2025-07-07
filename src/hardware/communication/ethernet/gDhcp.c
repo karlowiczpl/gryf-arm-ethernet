@@ -131,7 +131,7 @@ void wizchip_dhcp_assign()
 
     net_info.dhcp = NETINFO_DHCP;
 
-    update_eeprom_network_data(net_info.ip, net_info.gw, net_info.sn);
+    // update_eeprom_network_data(net_info.ip, net_info.gw, net_info.sn);
     network_initialize(net_info);
   #endif /* ifdef DHCP_ENABLE */
 

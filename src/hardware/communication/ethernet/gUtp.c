@@ -25,9 +25,15 @@ void setup_udp()
 
 void send_to_udp(uint8_t* msg)
 {
-  if(strlen(msg) < 3)   return;
-  if(!broadcast_ip_seted)     calculate_broadcast_ip(net_info.ip, net_info.sn, broadcast_ip);
-  sendto(SOCKET_UDP, msg, strlen(msg), broadcast_ip, UDP_PORT);
+  size_t len = strlen((char*)msg);
+  if(len < 2) return;
+
+  if(!broadcast_ip_seted) 
+  {
+    calculate_broadcast_ip(net_info.ip, net_info.sn, broadcast_ip);
+  }
+
+  sendto(SOCKET_UDP, msg, len, broadcast_ip, UDP_PORT);
 }
 
 uint8_t* read_broadcast_udp()
@@ -44,30 +50,35 @@ uint8_t* read_broadcast_udp()
       {
         ret = recvfrom(SOCKET_UDP, ethernet_buf, size, destip, (uint16_t*)&desport);
 
-        ethernet_buf[ret] = '\0';
-
-        return ethernet_buf;
+        if (ret > 0) 
+        {
+          ethernet_buf[ret] = '\0';
+          return ethernet_buf;
+        }
       }
-    break;
+      break;
 
     case SOCK_CLOSED:
       setup_udp();
-    break;
+      break;
 
     default:
       break;
-    break;
-  } 
+  }
 
-  ethernet_buf[0] = '\n';
+  ethernet_buf[0] = '\0';
   return ethernet_buf;
 }
 
 inline void calculate_broadcast_ip(const uint8_t* ip, const uint8_t* sn, uint8_t* buffer)
 {
-  for(uint8_t i = 0; i < 4; i++)
+  if(!broadcast_ip_seted)
   {
-    buffer[i] = ~sn[i];
-    buffer[i] |= ip[i];
+    for(uint8_t i = 0; i < 4; i++)
+    {
+      buffer[i] = ~sn[i];
+      buffer[i] |= ip[i];
+    }
+    broadcast_ip_seted = 1;
   }
 }

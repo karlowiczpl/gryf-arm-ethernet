@@ -7,57 +7,11 @@
 #include <w5x00_spi.h>
 #include <socket.h>
 
-#include <dhcp.h>
-#include <dns.h>
-#include <httpServer.h>
-#include <httpParser.h>
-
 #include "gTcp.h"
-#include "httpUtil.h"
 #include "timer.h"
 #include "cpu.h"
 
 #include "GryfSmart_Config.h"
-
-#include "web/index.h"
-#include "web/ethernet.h"
-
-#include "stdio.h"
-
-// #ifdef HTTP_SERVER_HANDLER
-//   static uint8_t g_http_send_buf[1025 * 12] = {0};
-//   static uint8_t g_http_recv_buf[HTTP_BUF_MAX_SIZE] = {0};
-//   static uint8_t g_http_socket_num_list[] = {0, 1, 2, 3};
-// #endif /* ifdef HTTP_SERVER_HANDLER */
-
-//   #ifdef HTTP_SERVER_HANDLER
-//     httpServer_init(g_http_send_buf, g_http_recv_buf, HTTP_SOCKET_MAX_NUM, g_http_socket_num_list);
-//     
-//     reg_httpServer_webContent("index.html", index_page);
-//     reg_httpServer_webContent("web_configuration.html", web_configuration_page);
-//     reg_httpServer_webContent("set-ip", "OK");
-//   #endif /* ifdef HTTP_SERVER_HANDLER */
-// }
-
-inline void http_server_run()
-{
-  #ifdef HTTP_SERVER_HANDLER
-  for(uint8_t i = 0; i < HTTP_SOCKET_MAX_NUM; i++)
-  {
-    st_http_request test;
-
-    httpServer_run(i);
-
-
-    // uint16_t x = read_userReg_webContent(PTYPE_JSON, g_http_recv_buf, 0, 2048);
-    // if(x)
-    // {
-    //   printf("dsajhdklsajkldjlkajsd: %d\n", x);
-    // }
-  }
-  
-  #endif /* ifdef HTTP_SERVER_HANDLER */
-}
 
 // char* read_tcp() 
 // {
